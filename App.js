@@ -1,7 +1,7 @@
 import { StatusBar,Link } from 'expo-status-bar';
 import { StyleSheet, Text, ImageBackground,Pressable } from 'react-native';
 
-import imagg from "./assets/back.jpg"
+import imagg from "./assets/chat.jpg"
 
 export default function App() {
   return (
