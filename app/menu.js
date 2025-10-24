@@ -18,7 +18,7 @@ export default function Menu() {
   useEffect(() => {
    
     const timer = setTimeout(() => {
-      setMessage("☕ Welcome to BrewTime!");
+      setMessage("☕ Welcome to BrewTimeCoffee! ");
     }, 2000);
 
     return () => clearTimeout(timer);
