@@ -1,71 +1,84 @@
-import {  Text, Button,View, ImageBackground, StyleSheet} from "react-native";
-import { router } from "expo-router";
-import imagg from "../assets/logo.jpg";
-import imag from '../assets/background.jpg';
-
-
+import React, { useState, useEffect } from "react";
+import {
+  Text,
+  View,
+  ImageBackground,
+  StyleSheet,
+  TouchableOpacity,
+} from "react-native";
+import { useRouter } from "expo-router";
+import imag from "../assets/background.jpg";
 
 export default function Index() {
+  const router = useRouter();
+  const [subtitle, setSubtitle] = useState("");
+
+  useEffect(() => {
+    setTimeout(() => {
+      setSubtitle(
+        "Welcome to BrewTimeCoffee\nExperience the art of enjoying every perfect sip."
+      );
+    }, 500);
+  }, []);
+
   return (
-
-   
-    <ImageBackground  source ={imag} style={styles.container}>
-      <Text style={styles.Text}>BrewTimeCoffee</Text>
-      <Text style={styles.para}> Welcome to BrewTimeCoffee  
-Experience the art of enjoying every perfect sip.
-
-</Text>
-
-
-      <View style={styles.backe}>
-
-        <View style={styles.btn}>
-        <Button title="Go to Menu" onPress={() => router.push("/menu")} />
-        </View>
-
+    <ImageBackground source={imag} style={styles.container} resizeMode="cover">
+      <View style={styles.header}>
+        <Text style={styles.title}>BrewTimeCoffee</Text>
+        <Text style={styles.subtitle}>{subtitle}</Text>
       </View>
-      
+
+      <View style={styles.footer}>
+        <TouchableOpacity
+          style={styles.btn}
+          onPress={() => router.push("/menu")}
+        >
+          <Text style={styles.btnText}>Go to Menu</Text>
+        </TouchableOpacity>
+      </View>
     </ImageBackground>
-
-
-    
-    
   );
 }
-
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingHorizontal: 20,
+    paddingVertical: 50,
   },
-  Text:{
-    color: "yellow",
-    marginBottom:200,
-    paddingTop: 80,
-    fontSize: 20,
+  header: {
+    alignItems: "center",
+    marginTop: 20,
   },
-  para:{
-     color: "white",
-    marginBottom:200,
-    paddingTop: 80,
-    marginLeft:10,
-    fontSize: 20,
+  title: {
+    fontSize: 44,
+    color: "#fff",
+    textAlign: "center",
+    fontFamily: "Georgia",  
+    fontWeight: "bold",
+    marginBottom: 10,
   },
-  btn:{
-    backgroundColor: "#dbd4d4ff",
-    borderRadius: 10,
-
-
-    
+  subtitle: {
+    fontSize: 18,
+    color: "#e9e4d8ff",
+    textAlign: "center",
+    lineHeight: 24,
   },
-  // backe:{
-  //   backgroundColor: '#eff0ea41',
-  //   width: 200,
-  //   height: 50,
-  // }
-
+  footer: {
+    marginBottom: 40,
+  },
+  btn: {
+    backgroundColor: "#fff",
+    borderRadius: 25,
+    paddingVertical: 12,
+    paddingHorizontal: 40,
+    alignItems: "center",
+  },
+  btnText: {
+    color: "#8B4513",
+    fontSize: 18,
+    fontWeight: "bold",
+  },
 });
